@@ -1,0 +1,36 @@
+swagger: "2.0"
+info:
+  title: flexiserver-api
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /verify/{id}:
+    get:
+      operationId: verifyHashId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Hash ID to verify
+      x-google-backend:
+        address: https://flexiserver-qohxfd326a-uc.a.run.app
+      responses:
+        "200":
+          description: Verification result
+          schema:
+            type: object
+            properties:
+              valid:
+                type: boolean
+                description: Whether the hash ID is valid
+x-google-quota:
+  limits:
+    - name: "requests-per-hour"
+      metric: "requests"
+      unit: "1/h"
+      values:
+        STANDARD: 500

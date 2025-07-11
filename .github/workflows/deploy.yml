@@ -1,0 +1,21 @@
+name: Deploy API Gateway
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: google-github-actions/setup-gcloud@v1
+      with:
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: flexiserver
+    - name: Deploy API Gateway
+      run: |
+        gcloud api-gateway api-configs create config-${{ github.sha }} \
+          --api=flexiserver-api \
+          --openapi-spec=openapi.yaml
+        gcloud api-gateway gateways update flexiserver-api-gateway \
+          --api-config=config-${{ github.sha }} \
+          --location=us-central1
