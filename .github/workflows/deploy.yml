@@ -10,11 +10,9 @@ jobs:
     - uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
-    - uses: google-github-actions/setup-gcloud@v1
-    - name: Deploy to Cloud Run
-      run: |
-        gcloud run deploy flexiserver \
-          --source . \
-          --region us-central1 \
-          --project flexiserver \
-          --allow-unauthenticated
+    - uses: google-github-actions/deploy-cloudrun@v2
+      with:
+        service: flexiserver
+        source: .
+        region: us-central1
+        flags: --allow-unauthenticated
