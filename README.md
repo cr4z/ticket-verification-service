@@ -1,6 +1,6 @@
 # Ticket Verification Service
 
-A simple microservice that verifies ticket IDs against a predefined dataset. Designed for demonstration purposes. Part of my cloud application Flexiserver, a collection of microservices for demo use that share a rate limited API gateway at 500req/hour for cost management.
+A simple microservice that verifies ticket IDs against a predefined dataset. Part of my cloud application Flexiserver, a collection of microservices for demo use that share a rate limited API gateway at 500req/hour for cost management.
 
 ## Usage
 
